@@ -3,12 +3,13 @@ from django.db import models
 class BrandingSettings(models.Model):
     company_name = models.CharField(max_length=200, default="Obrigado Finance")
     logo = models.ImageField(upload_to='logos/', blank=True, null=True)
-    primary_color = models.CharField(max_length=7, default="#0f172a")
-    secondary_color = models.CharField(max_length=7, default="#10b981")
-    accent_color = models.CharField(max_length=7, default="#f59e0b")
-    dark_color = models.CharField(max_length=7, default="#0f172a", help_text="For Top Bar, Footer, and Headers")
-    text_color = models.CharField(max_length=7, default="#475569", help_text="Main text color")
-    bg_color = models.CharField(max_length=7, default="#f8fafc", help_text="Light background color for sections")
+    # Rangi (Brand Colors)
+    primary_color = models.CharField("Rangi Kuu (Primary)", max_length=7, default="#1a73e8", help_text="Rangi ya vitufe vikuu na vichwa vya habari")
+    secondary_color = models.CharField("Rangi ya Pili (Secondary)", max_length=7, default="#34a853", help_text="Rangi ya vitufe vingine na mapambo")
+    accent_color = models.CharField("Rangi ya Mapambo (Accent)", max_length=7, default="#fbbc04", help_text="Rangi ya kuonyesha vitu muhimu kama bei au tahadhari")
+    dark_color = models.CharField("Rangi Nyeusi (Dark)", max_length=7, default="#0f172a", help_text="Rangi ya Footer, Top Bar, na sehemu za giza")
+    text_color = models.CharField("Rangi ya Maandishi (Text)", max_length=7, default="#475569", help_text="Rangi ya maandishi ya kawaida")
+    bg_color = models.CharField("Rangi ya Nyuma (Background)", max_length=7, default="#f8fafc", help_text="Rangi nyepesi ya nyuma ya kurasa")
     footer_text = models.TextField(default="© 2026 Obrigado Finance. All rights reserved.")
 
     # Home Page
