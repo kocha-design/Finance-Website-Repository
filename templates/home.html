@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <section class="hero">
     <div class="container hero-content">
         <h1>{{ branding.hero_title }}</h1>
@@ -8,6 +9,25 @@
     </div>
 </section>
 
+<!-- Partners Logos -->
+{% if partners %}
+<section class="partners-section">
+    <div class="container">
+        <p class="partners-label">Trusted by world-class partners</p>
+        <div class="partners-row">
+            {% for partner in partners %}
+                {% if partner.logo %}
+                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="partner-logo">
+                {% else %}
+                <span class="partner-name">{{ partner.name }}</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Features -->
 <section class="features-section">
     <div class="container">
         <div class="section-title">
@@ -33,4 +53,31 @@
         </div>
     </div>
 </section>
+
+<!-- Latest Insights -->
+{% if latest_posts %}
+<section class="content-section bg-light">
+    <div class="container">
+        <div class="section-title">
+            <h2>Latest Insights</h2>
+            <p>Stay informed with our financial experts.</p>
+        </div>
+        <div class="blog-grid">
+            {% for post in latest_posts %}
+            <div class="blog-card fade-in">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" class="blog-img">
+                {% endif %}
+                <div class="blog-body">
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.excerpt|truncatechars:100 }}</p>
+                    <a href="{% url 'blog_detail' post.slug %}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
 {% endblock %}

@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Obrigado Finance{% endblock %}</title>
-    <!-- Premium Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -18,7 +17,6 @@
     </style>
 </head>
 <body>
-    <!-- Top Bar for International Feel -->
     <div class="top-bar">
         <div class="container">
             <span><i class="fas fa-envelope"></i> {{ branding.contact_email }}</span>
@@ -37,12 +35,23 @@
             </div>
             <nav>
                 <a href="/">Home</a>
-                <a href="/about/">About Us</a>
+                <a href="/about/">About</a>
                 <a href="/services/">Services</a>
+                <a href="/blog/">Insights</a>
+                <a href="/faq/">FAQ</a>
                 <a href="/contact/">Contact</a>
             </nav>
         </div>
     </header>
+
+    <!-- Flash Messages -->
+    {% if messages %}
+    <div class="container" style="margin-top:1rem;">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <main>
         {% block content %}{% endblock %}
@@ -53,13 +62,19 @@
             <div class="footer-col">
                 <h3>{{ branding.company_name }}</h3>
                 <p>Leading the future of finance with innovation, security, and trust.</p>
+                <!-- Newsletter -->
+                <form action="{% url 'subscribe' %}" method="POST" class="newsletter-form">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
             </div>
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <a href="/about/">About Us</a>
                 <a href="/services/">Our Services</a>
+                <a href="/blog/">Insights</a>
                 <a href="/faq/">FAQ</a>
-                <a href="/contact/">Contact Support</a>
             </div>
             <div class="footer-col">
                 <h3>Contact Us</h3>
@@ -70,6 +85,12 @@
             <p>{{ branding.footer_text }}</p>
         </div>
     </footer>
+
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/{{ branding.whatsapp_number }}?text=Hello%20{{ branding.company_name }},%20I%20would%20like%20to%20know%20more%20about%20your%20services." target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+    <button id="scrollTopBtn" class="scroll-top"><i class="fas fa-arrow-up"></i></button>
 
     <script src="{% static 'js/main.js' %}"></script>
 </body>

@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import BrandingSettings, Service, CoreValue, TeamMember, Testimonial, FAQ
+from .models import BrandingSettings, Service, CoreValue, TeamMember, Testimonial, FAQ, Partner, BlogPost, Subscriber
 
 @admin.register(BrandingSettings)
 class BrandingSettingsAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Brand Identity', {'fields': ('company_name', 'logo', 'primary_color', 'secondary_color', 'accent_color', 'footer_text')}),
+        ('Brand Identity', {'fields': ('company_name', 'logo', 'primary_color', 'secondary_color', 'accent_color', 'footer_text', 'whatsapp_number')}),
         ('Home Page', {'fields': ('hero_title', 'hero_subtitle', 'hero_button_text')}),
         ('About Page - Texts', {'fields': ('about_title', 'about_subtitle', 'about_mission', 'about_vision')}),
         ('About Page - Media', {'fields': ('about_image',)}),
@@ -27,8 +27,21 @@ class TeamMemberAdmin(admin.ModelAdmin):
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):
     list_display = ('client_name', 'company', 'rating')
-    
+
 @admin.register(FAQ)
 class FAQAdmin(admin.ModelAdmin):
     list_display = ('question', 'order')
     list_editable = ('order',)
+
+@admin.register(Partner)
+class PartnerAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+@admin.register(BlogPost)
+class BlogPostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'created_at')
+    prepopulated_fields = {'slug': ('title',)}
+
+@admin.register(Subscriber)
+class SubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email', 'subscribed_at')

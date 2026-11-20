@@ -1,23 +1,44 @@
-from django.shortcuts import render
-from .models import Service, CoreValue, TeamMember, Testimonial, FAQ
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+from .models import Service, CoreValue, TeamMember, Testimonial, FAQ, Partner, BlogPost, Subscriber
 
 def home(request):
-    return render(request, 'home.html')
+    partners = Partner.objects.all()
+    latest_posts = BlogPost.objects.all()[:3]
+    return render(request, 'home.html', {'partners': partners, 'latest_posts': latest_posts})
 
 def about(request):
-    values = CoreValue.objects.all()
-    team = TeamMember.objects.all()
-    testimonials = Testimonial.objects.all()
-    context = {'values': values, 'team': team, 'testimonials': testimonials}
+    context = {
+        'values': CoreValue.objects.all(),
+        'team': TeamMember.objects.all(),
+        'testimonials': Testimonial.objects.all(),
+    }
     return render(request, 'about.html', context)
 
 def services(request):
-    services_list = Service.objects.all()
-    return render(request, 'services.html', {'services': services_list})
+    return render(request, 'services.html', {'services': Service.objects.all()})
 
 def faq(request):
-    faqs = FAQ.objects.all()
-    return render(request, 'faq.html', {'faqs': faqs})
+    return render(request, 'faq.html', {'faqs': FAQ.objects.all()})
 
 def contact(request):
     return render(request, 'contact.html')
+
+def blog_list(request):
+    posts = BlogPost.objects.all()
+    return render(request, 'blog.html', {'posts': posts})
+
+def blog_detail(request, slug):
+    post = get_object_or_404(BlogPost, slug=slug)
+    return render(request, 'blog_detail.html', {'post': post})
+
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        if email:
+            if Subscriber.objects.filter(email=email).exists():
+                messages.info(request, 'You are already subscribed!')
+            else:
+                Subscriber.objects.create(email=email)
+                messages.success(request, 'Thank you for subscribing!')
+    return redirect(request.META.get('HTTP_REFERER', '/'))

@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // --- Scroll Reveal Animation ---
-    const observer = new IntersectionObserver((entries, observer) => {
+    // Scroll Reveal
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }, { threshold: 0.1 });
-
+    
     document.querySelectorAll('.fade-in').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -17,16 +17,22 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // --- FAQ Accordion Logic ---
-    const faqQuestions = document.querySelectorAll('.faq-question');
-    faqQuestions.forEach(btn => {
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
         btn.addEventListener('click', () => {
             const parent = btn.parentElement;
-            // Close others (optional - remove if you want multiple open at once)
             document.querySelectorAll('.faq-item').forEach(item => {
                 if (item !== parent) item.classList.remove('active');
             });
             parent.classList.toggle('active');
         });
     });
+
+    // Scroll to Top
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) scrollBtn.classList.add('visible');
+        else scrollBtn.classList.remove('visible');
+    });
+    scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 });

@@ -32,6 +32,8 @@ class BrandingSettings(models.Model):
     contact_address = models.TextField(default="123 Financial District Avenue\nGlobal City, GC 10001")
     contact_email = models.CharField(max_length=100, default="info@obrigadofinance.com")
     contact_phone = models.CharField(max_length=50, default="+1 (800) 123-4567")
+    # Ongeza hii ndani ya class BrandingSettings
+    whatsapp_number = models.CharField(max_length=20, default="255700000000", help_text="Without + sign. E.g., 255700000000")
 
     class Meta:
         verbose_name_plural = "Branding & Site Settings"
@@ -84,3 +86,33 @@ class FAQ(models.Model):
 
     def __str__(self):
         return self.question
+    
+    # Ongeza hizi chini ya models zilizopo:
+
+class Partner(models.Model):
+    name = models.CharField(max_length=100)
+    logo = models.ImageField(upload_to='partners/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True)
+    image = models.ImageField(upload_to='blog/', blank=True, null=True)
+    excerpt = models.TextField(help_text="Short summary shown on the list page")
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.title
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    subscribed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
