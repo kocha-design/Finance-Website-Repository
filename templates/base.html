@@ -1,29 +1,45 @@
- 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ site_name }}{% endblock %}</title>
-    {% load static %}
+    <title>{% block title %}Obrigado Finance{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Hapa tunachukua rangi kutoka kwenye Admin Dashboard (White-label) -->
     <style>
         :root {
-            --primary: {{ primary_color }};
-            --secondary: {{ secondary_color }};
-            --accent: {{ accent_color }};
+            --primary: {{ branding.primary_color|default:"#1a73e8" }};
+            --secondary: {{ branding.secondary_color|default:"#34a853" }};
+            --accent: {{ branding.accent_color|default:"#fbbc04" }};
         }
     </style>
 </head>
 <body>
-    <nav style="background: var(--primary);">
-        {% if logo_url %}
-            <img src="{{ logo_url }}" alt="{{ site_name }}" class="logo">
-        {% else %}
-            <span class="brand-name">{{ site_name }}</span>
-        {% endif %}
-    </nav>
-    <main>{% block content %}{% endblock %}</main>
+    <header>
+        <div class="logo-container">
+            {% if branding.logo %}
+                <img src="{{ branding.logo.url }}" alt="{{ branding.company_name }} Logo" class="logo">
+            {% else %}
+                <h2>{{ branding.company_name|default:"Obrigado Finance" }}</h2>
+            {% endif %}
+        </div>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about/">About</a>
+            <a href="/services/">Services</a>
+            <a href="/contact/">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>{{ branding.footer_text|default:"© 2026 Obrigado Finance. All rights reserved." }}</p>
+    </footer>
+
     <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

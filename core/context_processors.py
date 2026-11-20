@@ -1,16 +1,7 @@
- 
-from .models import SiteBranding
+from .models import BrandingSettings
 
 def branding(request):
-    try:
-        brand = SiteBranding.objects.filter(is_active=True).first()
-    except Exception:
-        brand = None
-    return {
-        'brand': brand,
-        'site_name': brand.site_name if brand else 'Obrigado Finance',
-        'primary_color': brand.primary_color if brand else '#0A2540',
-        'secondary_color': brand.secondary_color if brand else '#F5A623',
-        'accent_color': brand.accent_color if brand else '#FFFFFF',
-        'logo_url': brand.logo.url if brand and brand.logo else '',
-    }
+    settings_obj = BrandingSettings.objects.first()
+    if not settings_obj:
+        settings_obj = BrandingSettings.objects.create()
+    return {'branding': settings_obj}

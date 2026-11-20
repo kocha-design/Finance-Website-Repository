@@ -1,6 +1,19 @@
 from django.contrib import admin
-from .models import SiteBranding
+from .models import BrandingSettings
 
-@admin.register(SiteBranding)
-class SiteBrandingAdmin(admin.ModelAdmin):
-    list_display = ('site_name', 'primary_color', 'is_active')
+
+@admin.register(BrandingSettings)
+class BrandingSettingsAdmin(admin.ModelAdmin):
+    list_display = ('company_name', 'primary_color', 'secondary_color', 'accent_color')
+    fieldsets = (
+        ('Company Identity', {
+            'fields': ('company_name', 'logo')
+        }),
+        ('Brand Colors', {
+            'fields': ('primary_color', 'secondary_color', 'accent_color'),
+            'description': 'Use hex codes like #1a73e8, #34a853, #fbbc04'
+        }),
+        ('Footer', {
+            'fields': ('footer_text',)
+        }),
+    )

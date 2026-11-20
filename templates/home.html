@@ -1,1 +1,26 @@
- 
+{% extends 'base.html' %}
+
+{% block title %}Home - {{ branding.company_name|default:"Obrigado Finance" }}{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Welcome to {{ branding.company_name|default:"Obrigado Finance" }}</h1>
+    <p>Your trusted partner for financial growth and stability.</p>
+    <a href="/contact/" class="btn">Get Started</a>
+</div>
+
+<section class="features">
+    <div class="feature-box">
+        <h3>Secure Investments</h3>
+        <p>Grow your wealth with our highly secure and diversified investment plans.</p>
+    </div>
+    <div class="feature-box">
+        <h3>Expert Advisors</h3>
+        <p>Our team of financial experts is here to guide you every step of the way.</p>
+    </div>
+    <div class="feature-box">
+        <h3>Fast Loans</h3>
+        <p>Get quick access to funds with our flexible loan options.</p>
+    </div>
+</section>
+{% endblock %}
