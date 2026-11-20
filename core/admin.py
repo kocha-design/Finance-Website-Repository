@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.db import models
 from django import forms
-from .models import BrandingSettings, Service, CoreValue, TeamMember, Testimonial, FAQ, Partner, BlogPost, Subscriber, HeroSlide
+from .models import BrandingSettings, Service, CoreValue, TeamMember, Testimonial, FAQ, Partner, BlogPost, Subscriber, HeroSlide, GalleryImage, NewsAlert
 # 1. Tengeneza Widget Maalum kwa ajili ya Rangi Pekee
 class ColorPickerWidget(forms.TextInput):
     input_type = 'color'
@@ -93,3 +93,13 @@ admin.site.register(BrandingSettings, BrandingSettingsAdmin)
 class HeroSlideAdmin(admin.ModelAdmin):
     list_display = ('title', 'order')
     list_editable = ('order',)
+    
+@admin.register(GalleryImage)
+class GalleryImageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category', 'uploaded_at')
+    list_filter = ('category',)
+
+@admin.register(NewsAlert)
+class NewsAlertAdmin(admin.ModelAdmin):
+    list_display = ('title', 'date_posted', 'is_important')
+    list_filter = ('is_important',)

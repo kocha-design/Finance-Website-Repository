@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}News & Alerts - {{ branding.company_name }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>News & Announcements</h1>
+        <p>Stay updated with the latest from {{ branding.company_name }}.</p>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <div class="news-grid">
+            {% for news in news_list %}
+            <div class="news-card fade-in {% if news.is_important %}urgent-news{% endif %}">
+                {% if news.is_important %}
+                <div class="urgent-badge"><i class="fas fa-bullhorn"></i> Important Alert</div>
+                {% endif %}
+                
+                {% if news.image %}
+                <img src="{{ news.image.url }}" alt="{{ news.title }}" class="news-img">
+                {% endif %}
+                
+                <div class="news-body">
+                    <span class="news-date"><i class="far fa-calendar-alt"></i> {{ news.date_posted|date:"F d, Y" }}</span>
+                    <h3>{{ news.title }}</h3>
+                    <p>{{ news.content|truncatechars:150 }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p style="text-align: center; grid-column: 1 / -1;">No news or alerts at the moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

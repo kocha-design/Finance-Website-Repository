@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Gallery - {{ branding.company_name }}{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1>Our Gallery</h1>
+        <p>Explore moments, events, and our vibrant workspace.</p>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <!-- Kama unataka filters za categories, tunaweza kuziongeza hapa baadaye -->
+        <div class="gallery-grid">
+            {% for img in images %}
+            <div class="gallery-item fade-in">
+                <img src="{{ img.image.url }}" alt="{{ img.title }}" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3>{{ img.title }}</h3>
+                    <p>{{ img.get_category_display }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p style="grid-column: 1 / -1; text-align: center;">No images uploaded yet. Check back soon!</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Service, CoreValue, TeamMember, Testimonial, FAQ, Partner, BlogPost, Subscriber, HeroSlide
+from .models import Service, CoreValue, TeamMember, Testimonial, FAQ, Partner, BlogPost, Subscriber, HeroSlide, GalleryImage, NewsAlert
 
 def home(request):
     partners = Partner.objects.all()
@@ -48,3 +48,13 @@ def subscribe(request):
                 Subscriber.objects.create(email=email)
                 messages.success(request, 'Thank you for subscribing!')
     return redirect(request.META.get('HTTP_REFERER', '/'))
+
+def gallery(request):
+    images = GalleryImage.objects.all()
+    # Pata categories zote zilizopo kwenye database
+    categories = set([img.get_category_display() for img in images])
+    return render(request, 'gallery.html', {'images': images, 'categories': categories})
+
+def news(request):
+    news_list = NewsAlert.objects.all()
+    return render(request, 'news.html', {'news_list': news_list})

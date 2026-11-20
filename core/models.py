@@ -133,3 +133,37 @@ class HeroSlide(models.Model):
 
     def __str__(self):
         return self.title
+    
+    
+class GalleryImage(models.Model):
+    CATEGORY_CHOICES = (
+        ('events', 'Events & Conferences'),
+        ('office', 'Office & Workspace'),
+        ('team', 'Team & Staff'),
+        ('awards', 'Awards & Recognition'),
+    )
+    title = models.CharField(max_length=150)
+    image = models.ImageField(upload_to='gallery/')
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, default='events')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-uploaded_at']
+        verbose_name_plural = "Gallery Images"
+
+    def __str__(self):
+        return self.title
+
+class NewsAlert(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    image = models.ImageField(upload_to='news/', blank=True, null=True, help_text="Optional image for the news")
+    date_posted = models.DateTimeField(auto_now_add=True)
+    is_important = models.BooleanField(default=False, help_text="Check this for Urgent Alerts (Red tag)")
+
+    class Meta:
+        ordering = ['-date_posted']
+        verbose_name_plural = "News & Alerts"
+
+    def __str__(self):
+        return self.title
