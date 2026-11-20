@@ -1,19 +1,40 @@
 {% extends 'base.html' %}
-{% block title %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.title }} - {{ branding.company_name }}{% endblock %}
+
 {% block content %}
+
+<!-- 1. Page Header (Kichwa cha Habari) -->
 <section class="page-header">
     <div class="container">
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.created_at|date:"F d, Y" }}</p>
+        <h1 class="article-title">{{ post.title }}</h1>
+        <p class="article-date"><i class="far fa-calendar-alt"></i> {{ post.created_at|date:"F d, Y" }}</p>
     </div>
 </section>
-<section class="content-section">
-    <div class="container article-container">
-        {% if post.image %}<img src="{{ post.image.url }}" class="article-hero-img">{% endif %}
-        <div class="article-content">
-            {{ post.content|linebreaks }}
+
+<!-- 2. Article Content -->
+<section class="content-section bg-light">
+    <div class="container">
+        <div class="article-container">
+            
+            <!-- Picha ya Makala -->
+            {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="article-hero-img">
+            {% endif %}
+
+            <!-- Maudhui ya Makala -->
+            <div class="article-content">
+                {{ post.content|linebreaks }}
+            </div>
+
+            <!-- Kitufe cha Kurudi Nyuma -->
+            <div class="article-footer">
+                <a href="{% url 'blog_list' %}" class="btn btn-outline-dark">
+                    <i class="fas fa-arrow-left"></i> Back to Insights
+                </a>
+            </div>
+
         </div>
-        <a href="/blog/" class="btn" style="margin-top:2rem;">← Back to Insights</a>
     </div>
 </section>
+
 {% endblock %}

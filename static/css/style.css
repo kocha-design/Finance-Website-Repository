@@ -560,3 +560,94 @@ h1, h2, h3, h4, h5, h6 { color: var(--dark); }
     font-size: 1rem;
     line-height: 1.7;
 }
+
+/* =========================================
+   BLOG DETAIL (ARTICLE) STYLES
+   ========================================= */
+
+/* Kichwa cha Habari */
+.article-title {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.article-date {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Container ya Makala */
+.article-container {
+    max-width: 850px;
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 4rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    margin-top: -3rem; /* Inavuta juu kidogo kuingiliana na header */
+    position: relative;
+    z-index: 10;
+}
+
+/* Picha ya Makala */
+.article-hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Maandishi ya Makala */
+.article-content {
+    color: #334155;
+    font-size: 1.15rem;
+    line-height: 1.9;
+}
+
+.article-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* Kitufe cha Kurudi Nyuma */
+.article-footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+.btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem 2rem;
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-outline-dark:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateX(-5px); /* Inasogea kushoto kidogo */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .article-container { padding: 2rem; margin-top: 0; }
+    .article-title { font-size: 2rem; }
+}
