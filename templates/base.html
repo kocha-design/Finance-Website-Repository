@@ -1,0 +1,29 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ site_name }}{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        :root {
+            --primary: {{ primary_color }};
+            --secondary: {{ secondary_color }};
+            --accent: {{ accent_color }};
+        }
+    </style>
+</head>
+<body>
+    <nav style="background: var(--primary);">
+        {% if logo_url %}
+            <img src="{{ logo_url }}" alt="{{ site_name }}" class="logo">
+        {% else %}
+            <span class="brand-name">{{ site_name }}</span>
+        {% endif %}
+    </nav>
+    <main>{% block content %}{% endblock %}</main>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
