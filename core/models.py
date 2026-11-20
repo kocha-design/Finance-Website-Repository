@@ -6,6 +6,9 @@ class BrandingSettings(models.Model):
     primary_color = models.CharField(max_length=7, default="#0f172a")
     secondary_color = models.CharField(max_length=7, default="#10b981")
     accent_color = models.CharField(max_length=7, default="#f59e0b")
+    dark_color = models.CharField(max_length=7, default="#0f172a", help_text="For Top Bar, Footer, and Headers")
+    text_color = models.CharField(max_length=7, default="#475569", help_text="Main text color")
+    bg_color = models.CharField(max_length=7, default="#f8fafc", help_text="Light background color for sections")
     footer_text = models.TextField(default="© 2026 Obrigado Finance. All rights reserved.")
 
     # Home Page

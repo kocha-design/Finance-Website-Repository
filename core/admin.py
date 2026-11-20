@@ -4,7 +4,14 @@ from .models import BrandingSettings, Service, CoreValue, TeamMember, Testimonia
 @admin.register(BrandingSettings)
 class BrandingSettingsAdmin(admin.ModelAdmin):
     fieldsets = (
-        ('Brand Identity', {'fields': ('company_name', 'logo', 'primary_color', 'secondary_color', 'accent_color', 'footer_text', 'whatsapp_number')}),
+                ('Brand Identity', {
+            'fields': (
+                'company_name', 'logo', 
+                'primary_color', 'secondary_color', 'accent_color', 
+                'dark_color', 'text_color', 'bg_color', 
+                'footer_text', 'whatsapp_number'
+            )
+        }),
         ('Home Page', {'fields': ('hero_title', 'hero_subtitle', 'hero_button_text')}),
         ('About Page - Texts', {'fields': ('about_title', 'about_subtitle', 'about_mission', 'about_vision')}),
         ('About Page - Media', {'fields': ('about_image',)}),
