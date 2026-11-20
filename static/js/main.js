@@ -1,11 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Simple Scroll Reveal Animation
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
+    // --- Scroll Reveal Animation ---
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -14,14 +8,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    const elementsToAnimate = document.querySelectorAll('.feature-box, .service-card, .stat-item, .content-section');
-    
-    elementsToAnimate.forEach(el => {
+    document.querySelectorAll('.fade-in').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(el);
+    });
+
+    // --- FAQ Accordion Logic ---
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const parent = btn.parentElement;
+            // Close others (optional - remove if you want multiple open at once)
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== parent) item.classList.remove('active');
+            });
+            parent.classList.toggle('active');
+        });
     });
 });

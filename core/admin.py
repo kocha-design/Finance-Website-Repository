@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BrandingSettings, Service, CoreValue, TeamMember, Testimonial
+from .models import BrandingSettings, Service, CoreValue, TeamMember, Testimonial, FAQ
 
 @admin.register(BrandingSettings)
 class BrandingSettingsAdmin(admin.ModelAdmin):
@@ -27,3 +27,8 @@ class TeamMemberAdmin(admin.ModelAdmin):
 @admin.register(Testimonial)
 class TestimonialAdmin(admin.ModelAdmin):
     list_display = ('client_name', 'company', 'rating')
+    
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ('question', 'order')
+    list_editable = ('order',)

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}FAQ - {{ branding.company_name }}{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to the most common questions about our services.</p>
+    </div>
+</section>
+
+<section class="content-section">
+    <div class="container">
+        <div class="faq-container">
+            {% for item in faqs %}
+            <div class="faq-item fade-in">
+                <button class="faq-question">
+                    <span>{{ item.question }}</span>
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>{{ item.answer }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <p style="text-align:center; color:#64748b;">No FAQs added yet. Please add them in the Admin panel.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

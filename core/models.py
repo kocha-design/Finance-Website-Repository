@@ -72,3 +72,15 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return self.client_name
+    
+class FAQ(models.Model):
+    question = models.CharField(max_length=255)
+    answer = models.TextField()
+    order = models.IntegerField(default=0, help_text="Lower numbers appear first")
+
+    class Meta:
+        ordering = ['order']
+        verbose_name_plural = "FAQs"
+
+    def __str__(self):
+        return self.question
