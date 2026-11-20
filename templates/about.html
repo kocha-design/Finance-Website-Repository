@@ -1,32 +1,36 @@
 {% extends 'base.html' %}
-{% block title %}About Us - {{ branding.company_name|default:"Obrigado Finance" }}{% endblock %}
-
 {% block content %}
-<div class="page-header">
-    <h1>About {{ branding.company_name|default:"Obrigado Finance" }}</h1>
-    <p>Building financial bridges for a prosperous tomorrow.</p>
-</div>
+<section class="page-header">
+    <div class="container">
+        <h1>{{ branding.about_title }}</h1>
+        <p>{{ branding.about_subtitle }}</p>
+    </div>
+</section>
 
-<div class="content-section fade-in">
-    <h2>Our Mission</h2>
-    <p>To empower individuals and businesses with innovative financial solutions that drive growth, security, and long-term wealth. We believe that world-class financial services should be accessible, transparent, and tailored to your unique goals.</p>
-    
-    <h2>Our Vision</h2>
-    <p>To be the global benchmark for financial excellence, offering a seamless digital experience and unparalleled expert guidance.</p>
-    
-    <div class="stats-grid">
-        <div class="stat-item">
-            <h3>10+</h3>
-            <p>Years of Experience</p>
-        </div>
-        <div class="stat-item">
-            <h3>$500M+</h3>
-            <p>Assets Managed</p>
-        </div>
-        <div class="stat-item">
-            <h3>50k+</h3>
-            <p>Happy Clients</p>
+<section class="content-section">
+    <div class="container">
+        <div class="about-grid fade-in">
+            <div>
+                <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+                <p>{{ branding.about_mission }}</p>
+                <h2 style="margin-top: 2rem;"><i class="fas fa-eye"></i> Our Vision</h2>
+                <p>{{ branding.about_vision }}</p>
+            </div>
+            <div class="stats-box">
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>Years of Experience</p>
+                </div>
+                <div class="stat-item">
+                    <h3>500M+</h3>
+                    <p>Assets Managed</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50k+</h3>
+                    <p>Happy Clients</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %}

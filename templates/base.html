@@ -5,34 +5,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Obrigado Finance{% endblock %}</title>
-    <!-- Google Fonts for International Look -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Premium Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
         :root {
-            --primary: {{ branding.primary_color|default:"#1a73e8" }};
-            --secondary: {{ branding.secondary_color|default:"#34a853" }};
-            --accent: {{ branding.accent_color|default:"#fbbc04" }};
+            --primary: {{ branding.primary_color|default:"#0f172a" }};
+            --secondary: {{ branding.secondary_color|default:"#10b981" }};
+            --accent: {{ branding.accent_color|default:"#f59e0b" }};
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            {% if branding.logo %}
-                <img src="{{ branding.logo.url }}" alt="{{ branding.company_name }} Logo" class="logo">
-            {% else %}
-                <h2>{{ branding.company_name|default:"Obrigado Finance" }}</h2>
-            {% endif %}
+    <!-- Top Bar for International Feel -->
+    <div class="top-bar">
+        <div class="container">
+            <span><i class="fas fa-envelope"></i> {{ branding.contact_email }}</span>
+            <span><i class="fas fa-phone"></i> {{ branding.contact_phone }}</span>
         </div>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
-            <a href="/services/">Services</a>
-            <a href="/contact/">Contact</a>
-        </nav>
+    </div>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                {% if branding.logo %}
+                    <img src="{{ branding.logo.url }}" alt="Logo" class="logo">
+                {% else %}
+                    <h2>{{ branding.company_name }}</h2>
+                {% endif %}
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/about/">About Us</a>
+                <a href="/services/">Services</a>
+                <a href="/contact/">Contact</a>
+                <a href="#" class="btn-nav">Client Login</a>
+            </nav>
+        </div>
     </header>
 
     <main>
@@ -40,7 +50,25 @@
     </main>
 
     <footer>
-        <p>{{ branding.footer_text|default:"© 2026 Obrigado Finance. All rights reserved." }}</p>
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h3>{{ branding.company_name }}</h3>
+                <p>Leading the future of finance with innovation, security, and trust.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="/about/">About Us</a>
+                <a href="/services/">Our Services</a>
+                <a href="/contact/">Contact Support</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> {{ branding.contact_address|linebreaksbr }}</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>{{ branding.footer_text }}</p>
+        </div>
     </footer>
 
     <script src="{% static 'js/main.js' %}"></script>
