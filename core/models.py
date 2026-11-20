@@ -120,3 +120,16 @@ class Subscriber(models.Model):
 
     def __str__(self):
         return self.email
+    
+class HeroSlide(models.Model):
+    title = models.CharField(max_length=200, help_text="Andika kichwa cha habari kwa picha hii")
+    subtitle = models.TextField(help_text="Andika maelezo mafupi")
+    image = models.ImageField(upload_to='hero_slides/', help_text="Pakia picha nzuri ya jengo au timu")
+    order = models.IntegerField(default=0, help_text="Namba ndogo inaonekana kwanza")
+
+    class Meta:
+        ordering = ['order']
+        verbose_name_plural = "Hero Slides (Picha za Mwanzo)"
+
+    def __str__(self):
+        return self.title

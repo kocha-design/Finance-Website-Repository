@@ -16,22 +16,62 @@ nav { display: flex; gap: 2rem; align-items: center; }
 nav a { color: #0f172a; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
 nav a:hover { color: var(--secondary); }
 
-/* --- Hero Premium --- */
-.hero-premium {
+/* --- Hero Slider --- */
+.hero-slider {
     position: relative;
-    background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop') center/cover no-repeat;
-    padding: 10rem 0;
-    color: white;
+    height: 85vh; /* Inachukua 85% ya urefu wa kioo */
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
 }
+
+.slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
 .hero-overlay {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.7) 100%);
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
+    z-index: -1;
 }
+
 .hero-content-premium { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; }
-.hero-content-premium h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
-.hero-content-premium p { font-size: 1.3rem; color: #cbd5e1; margin-bottom: 2.5rem; }
-.hero-buttons { display: flex; gap: 1rem; justify-content: center; }
+.hero-content-premium h1 { font-size: 4rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; color: white; text-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.hero-content-premium p { font-size: 1.3rem; color: #e2e8f0; margin-bottom: 2.5rem; }
+
+/* Vitufe vya Kubadilisha Picha (Arrows) */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    z-index: 10;
+    transition: background 0.3s;
+    backdrop-filter: blur(5px);
+}
+.slider-btn:hover { background: rgba(255, 255, 255, 0.4); }
+.slider-btn.prev { left: 30px; }
+.slider-btn.next { right: 30px; }
 
 /* --- Buttons --- */
 .btn { display: inline-block; padding: 1rem 2rem; font-size: 1rem; font-weight: 700; text-decoration: none; border-radius: 8px; transition: all 0.3s; cursor: pointer; }

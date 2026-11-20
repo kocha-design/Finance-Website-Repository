@@ -1,19 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- 1. HERO SECTION (Picha ya Nyuma + Glassmorphism) -->
-<section class="hero-premium">
-    <div class="hero-overlay"></div>
-    <div class="container hero-content-premium">
-        <h1 class="fade-in">{{ branding.hero_title }}</h1>
-        <p class="fade-in">{{ branding.hero_subtitle }}</p>
-        <div class="hero-buttons fade-in">
-            <a href="/contact/" class="btn btn-primary">{{ branding.hero_button_text }} <i class="fas fa-arrow-right"></i></a>
-            <a href="/services/" class="btn btn-outline">Explore Services</a>
+<!-- 1. HERO SECTION (Picha Zinazobadilika) -->
+<section class="hero-slider">
+    {% if slides %}
+        {% for slide in slides %}
+        <div class="slide {% if forloop.first %}active{% endif %}" style="background-image: url('{{ slide.image.url }}');">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content-premium">
+                <h1 class="fade-in">{{ slide.title }}</h1>
+                <p class="fade-in">{{ slide.subtitle }}</p>
+                <div class="hero-buttons fade-in">
+                    <a href="/contact/" class="btn btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+                    <a href="/services/" class="btn btn-outline">Explore Services</a>
+                </div>
+            </div>
         </div>
-    </div>
+        {% endfor %}
+        
+        <!-- Vitufe vya Kubadilisha Picha -->
+        <button class="slider-btn prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-btn next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+    {% else %}
+        <!-- Kama Admin hajaweka picha, ionyeshe ile ya kawaida -->
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content-premium">
+                <h1>{{ branding.hero_title }}</h1>
+                <p>{{ branding.hero_subtitle }}</p>
+                <div class="hero-buttons">
+                    <a href="/contact/" class="btn btn-primary">{{ branding.hero_button_text }} <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </section>
 
+<!-- (Acha sehemu zingine za Quick Stats, Partners, n.k. kama zilivyo) -->
 <!-- 2. QUICK STATS (Chini ya Hero) -->
 <section class="quick-stats">
     <div class="container stats-row">

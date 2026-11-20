@@ -35,4 +35,37 @@ document.addEventListener('DOMContentLoaded', function() {
         else scrollBtn.classList.remove('visible');
     });
     scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // --- Hero Slider Logic ---
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(index) {
+    if (slides.length === 0) return;
+    
+    slides.forEach(slide => slide.classList.remove('active'));
+    
+    if (index >= slides.length) currentSlide = 0;
+    if (index < 0) currentSlide = slides.length - 1;
+    
+    slides[currentSlide].classList.add('active');
+}
+
+function changeSlide(direction) {
+    currentSlide += direction;
+    showSlide(currentSlide);
+    resetTimer(); // Reset timer ukibonyeza kitufe
+}
+
+function nextSlide() {
+    changeSlide(1);
+}
+
+// Badilisha picha kila baada ya sekunde 5
+let slideInterval = setInterval(nextSlide, 5000);
+
+function resetTimer() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 5000);
+}
 });

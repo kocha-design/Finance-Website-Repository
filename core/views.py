@@ -1,11 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Service, CoreValue, TeamMember, Testimonial, FAQ, Partner, BlogPost, Subscriber
+from .models import Service, CoreValue, TeamMember, Testimonial, FAQ, Partner, BlogPost, Subscriber, HeroSlide
 
 def home(request):
     partners = Partner.objects.all()
     latest_posts = BlogPost.objects.all()[:3]
-    return render(request, 'home.html', {'partners': partners, 'latest_posts': latest_posts})
+    slides = HeroSlide.objects.all()
+    return render(request, 'home.html', {
+        'partners': partners, 
+        'latest_posts': latest_posts,
+        'slides': slides
+    })
+# (Acha views zingine zilizobaki kama zilivyo)
 
 def about(request):
     context = {
