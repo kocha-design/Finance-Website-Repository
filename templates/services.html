@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
+{% block title %}Our Services - {{ branding.company_name }}{% endblock %}
+
 {% block content %}
+<!-- Page Header -->
 <section class="page-header">
     <div class="container">
         <h1>World-Class Financial Services</h1>
@@ -7,17 +10,20 @@
     </div>
 </section>
 
+<!-- Services Grid -->
 <section class="content-section">
     <div class="container">
         <div class="services-grid">
             {% for service in services %}
             <div class="service-card fade-in">
-                <div class="icon">{{ service.icon }}</div>
+                <div class="icon-box">
+                    <span class="service-icon">{{ service.icon }}</span>
+                </div>
                 <h3>{{ service.title }}</h3>
                 <p>{{ service.description }}</p>
             </div>
             {% empty %}
-            <p>No services added yet. Please add them in the Admin panel.</p>
+            <p style="text-align:center; color:#64748b; grid-column: 1 / -1;">No services added yet. Please add them in the Admin panel.</p>
             {% endfor %}
         </div>
     </div>
