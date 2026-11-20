@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Our Services - {{ branding.company_name|default:"Obrigado Finance" }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>World-Class Financial Services</h1>
+    <p>Tailored solutions to meet your financial ambitions.</p>
+</div>
+
+<div class="services-grid fade-in">
+    <div class="service-card">
+        <div class="icon">📈</div>
+        <h3>Wealth Management</h3>
+        <p>Personalized investment strategies designed to preserve and grow your wealth across global markets.</p>
+    </div>
+    <div class="service-card">
+        <div class="icon">🏦</div>
+        <h3>Corporate Banking</h3>
+        <p>Comprehensive financial solutions for businesses of all sizes, from startups to multinational corporations.</p>
+    </div>
+    <div class="service-card">
+        <div class="icon">💳</div>
+        <h3>Smart Lending</h3>
+        <p>Fast, flexible loan products with competitive rates, designed to fund your personal or business goals.</p>
+    </div>
+    <div class="service-card">
+        <div class="icon">🌍</div>
+        <h3>Global Transfers</h3>
+        <p>Secure, lightning-fast international money transfers with real-time exchange rates and low fees.</p>
+    </div>
+</div>
+{% endblock %}

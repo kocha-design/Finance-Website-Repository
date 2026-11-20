@@ -1,73 +1,102 @@
+/* --- Global Styles --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #f4f7f6; color: #333; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
 
-body { background-color: #f9f9f9; color: #333; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-
+/* --- Header & Navigation --- */
 header {
     background-color: var(--primary);
     color: white;
-    padding: 1rem 2rem;
+    padding: 1rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
-
 .logo { max-height: 50px; }
-
+nav { display: flex; gap: 1.5rem; }
 nav a {
-    color: white;
-    text-decoration: none;
-    margin-left: 1.5rem;
-    font-weight: 500;
-    transition: color 0.3s;
+    color: white; text-decoration: none; font-weight: 500; font-size: 1.05rem;
+    transition: color 0.3s, transform 0.3s;
 }
+nav a:hover { color: var(--accent); transform: translateY(-2px); }
 
-nav a:hover { color: var(--accent); }
+/* --- Main Layout --- */
+main { flex: 1; padding: 3rem 5%; max-width: 1200px; margin: 0 auto; width: 100%; }
 
-main { flex: 1; padding: 2rem; max-width: 1200px; margin: 0 auto; width: 100%; }
+/* --- Page Headers --- */
+.page-header {
+    text-align: center; margin-bottom: 3rem;
+    animation: fadeInDown 1s ease forwards;
+}
+.page-header h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 0.5rem; }
+.page-header p { color: #666; font-size: 1.2rem; }
 
+/* --- Hero Section (Home) --- */
 .hero {
-    background: white;
-    padding: 3rem;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 2rem;
-    border-top: 5px solid var(--secondary);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white; padding: 5rem 2rem; text-align: center;
+    border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 4rem;
+    animation: fadeIn 1.5s ease forwards;
 }
+.hero h1 { color: white; font-size: 3rem; margin-bottom: 1.5rem; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+.hero p { font-size: 1.3rem; margin-bottom: 2.5rem; color: #f0f0f0; }
 
-.hero h1 { color: var(--primary); margin-bottom: 1rem; }
-.hero p { font-size: 1.2rem; margin-bottom: 2rem; color: #555; }
-
+/* --- Buttons --- */
 .btn {
     display: inline-block;
-    background-color: var(--primary);
-    color: white;
-    padding: 0.8rem 2rem;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background 0.3s;
+    background-color: var(--accent); color: #111;
+    padding: 1rem 2.5rem; font-size: 1.1rem; font-weight: bold;
+    text-decoration: none; border-radius: 50px; border: none; cursor: pointer;
+    transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-.btn:hover { background-color: var(--secondary); }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); filter: brightness(1.1); }
 
-.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-
-.feature-box {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    border-bottom: 4px solid var(--accent);
+/* --- Feature & Services Grids --- */
+.features, .services-grid, .stats-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 3rem;
 }
+.feature-box, .service-card, .stat-item {
+    background: white; padding: 2.5rem; border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-bottom: 5px solid var(--secondary);
+    transition: transform 0.3s, box-shadow 0.3s; text-align: center;
+}
+.feature-box:hover, .service-card:hover {
+    transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.feature-box h3, .service-card h3 { color: var(--primary); font-size: 1.5rem; margin-bottom: 1rem; }
+.icon { font-size: 3rem; margin-bottom: 1rem; }
 
-.feature-box h3 { color: var(--primary); margin-bottom: 0.5rem; }
+/* --- About & Stats --- */
+.content-section { background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.content-section h2 { color: var(--primary); margin: 1.5rem 0 1rem; }
+.stat-item h3 { color: var(--secondary); font-size: 2.5rem; margin-bottom: 0.5rem; }
 
-footer { background-color: #222; color: #ccc; text-align: center; padding: 1.5rem; margin-top: auto; }
+/* --- Contact Form --- */
+.contact-container { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; background: white; padding: 3rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.contact-info h3 { color: var(--primary); margin-top: 1rem; }
+.form-group { margin-bottom: 1.5rem; }
+.form-group label { display: block; font-weight: bold; margin-bottom: 0.5rem; color: #444; }
+.form-group input, .form-group textarea {
+    width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; transition: border 0.3s;
+}
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* --- Footer --- */
+footer { background-color: #1a1a1a; color: #888; text-align: center; padding: 2rem; margin-top: auto; font-size: 0.9rem; }
+
+/* --- Animations --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in { animation: fadeIn 1.5s ease forwards; }
+
+/* --- Responsive Design (Mobile) --- */
+@media (max-width: 900px) {
+    .contact-container { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.2rem; }
     header { flex-direction: column; gap: 1rem; text-align: center; }
-    nav a { margin: 0 0.75rem; }
-    .hero { padding: 1.5rem; }
+    nav { flex-wrap: wrap; justify-content: center; }
 }
