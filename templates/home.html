@@ -14,7 +14,17 @@
 <section class="partners-section">
     <div class="container">
         <p class="partners-label">Trusted by world-class partners</p>
-        <div class="partners-row">
+        <div class="partners-marquee">
+            <!-- Set 1 -->
+            {% for partner in partners %}
+                {% if partner.logo %}
+                <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="partner-logo">
+                {% else %}
+                <span class="partner-name">{{ partner.name }}</span>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Set 2 (Duplicate kwa ajili ya muendelezo usio na mwisho) -->
             {% for partner in partners %}
                 {% if partner.logo %}
                 <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="partner-logo">
