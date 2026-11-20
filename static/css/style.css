@@ -86,3 +86,40 @@ footer { background-color: #0f172a; color: #94a3b8; padding-top: 4rem; margin-to
     nav { flex-wrap: wrap; justify-content: center; }
     .top-bar .container { flex-direction: column; align-items: center; gap: 5px; }
 }
+
+/* --- Extra Styles for About Page --- */
+.bg-light { background-color: #f1f5f9; }
+
+/* About Image */
+.about-image-container { display: flex; align-items: center; justify-content: center; }
+.about-img { width: 100%; max-width: 500px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); object-fit: cover; }
+.about-img-placeholder { width: 100%; max-width: 500px; height: 350px; background: #e2e8f0; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 5rem; color: #94a3b8; }
+
+/* Stats Section */
+.stats-section { background-color: var(--primary); padding: 4rem 0; color: white; }
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
+.stat-box h3 { font-size: 3rem; font-weight: 800; color: var(--accent); margin-bottom: 0.5rem; }
+.stat-box p { font-size: 1.1rem; color: #cbd5e1; text-transform: uppercase; letter-spacing: 1px; }
+
+/* Team Grid */
+.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+.team-card { background: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s; }
+.team-card:hover { transform: translateY(-10px); }
+.team-photo { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 1.5rem; border: 4px solid var(--secondary); }
+.team-photo-placeholder { width: 150px; height: 150px; border-radius: 50%; background: #e2e8f0; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #94a3b8; margin: 0 auto 1.5rem auto; border: 4px solid var(--secondary); }
+.team-card h3 { color: var(--primary); font-size: 1.3rem; margin-bottom: 0.3rem; }
+.team-card .role { color: var(--secondary); font-weight: 700; margin-bottom: 1rem; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; }
+.team-card .bio { color: #64748b; font-size: 0.9rem; }
+
+/* Testimonials Grid */
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.testimonial-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); position: relative; border-top: 5px solid var(--accent); }
+.testimonial-card .stars { color: var(--accent); margin-bottom: 1rem; font-size: 1.1rem; }
+.testimonial-card .quote { font-style: italic; color: #475569; margin-bottom: 1.5rem; font-size: 1.05rem; line-height: 1.6; }
+.testimonial-card h4 { color: var(--primary); font-weight: 700; }
+.testimonial-card .company { color: #94a3b8; font-size: 0.9rem; }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .stat-box h3 { font-size: 2.2rem; }
+}
